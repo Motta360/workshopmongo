@@ -7,25 +7,52 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lucasmotta.workshopmongo.domain.User;
+import com.lucasmotta.workshopmongo.dto.UserDTO;
 import com.lucasmotta.workshopmongo.repositories.UserRepository;
 
 @Service
 public class UserService {
 	@Autowired
 	private UserRepository userRepository;
-	
-	public List<User> findAll(){
-		
+
+	public List<User> findAll() {
+
 		List<User> lista = userRepository.findAll();
 		return lista;
-	
+
 	}
-	
-	public User finById(String id) {
+
+	public User findById(String id) {
 		Optional<User> obj = userRepository.findById(id);
-	
+
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
-		
+
+	}
+
+	public User insert(User obj) {
+
+		return userRepository.insert(obj);
+	}
+
+	public User fromDTO(UserDTO obj) {
+
+		return new User(obj.getId(), obj.getName(), obj.getEmail());
+	}
+
+	public void delete(String id) {
+		findById(id);
+		userRepository.deleteById(id);
+	}
+
+	public User update(User obj) {
+		User newObj = findById(obj.getId());
+		updateData(newObj,obj);
+		return userRepository.save(newObj);
+	}
+
+	private void updateData(User newObj, User obj) {
+		newObj.setName(obj.getName());
+		newObj.setEmail(obj.getEmail());
 	}
 
 }

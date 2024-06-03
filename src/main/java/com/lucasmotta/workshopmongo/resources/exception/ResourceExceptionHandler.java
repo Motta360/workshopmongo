@@ -5,7 +5,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.fasterxml.jackson.datatype.jsr310.deser.InstantDeserializer;
 import com.lucasmotta.workshopmongo.services.ObjectNotFoundException;
 
 import jakarta.servlet.http.HttpServletRequest;
