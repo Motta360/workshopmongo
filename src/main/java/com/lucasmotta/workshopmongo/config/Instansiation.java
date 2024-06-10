@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import com.lucasmotta.workshopmongo.domain.Post;
 import com.lucasmotta.workshopmongo.domain.User;
 import com.lucasmotta.workshopmongo.dto.AuthorDTO;
+import com.lucasmotta.workshopmongo.dto.CommentDTO;
 import com.lucasmotta.workshopmongo.repositories.PostRepository;
 import com.lucasmotta.workshopmongo.repositories.UserRepository;
 
@@ -37,6 +38,8 @@ public class Instansiation implements CommandLineRunner {
 		Post p2 = new Post(null, LocalDate.parse("23/03/2018", fmt),"Bom dia", "Acordei Feliz hoje",new AuthorDTO(maria));
 		
 		
+		CommentDTO c1 = new CommentDTO("Boa viagem mano!", LocalDate.parse("21/03/2018", fmt), new AuthorDTO(alex));
+		p1.getComments().add(c1);
 		postRepository.saveAll(Arrays.asList(p1,p2));
 		
 		
