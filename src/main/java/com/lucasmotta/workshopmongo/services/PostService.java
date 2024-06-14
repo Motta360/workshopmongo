@@ -1,5 +1,6 @@
 package com.lucasmotta.workshopmongo.services;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,6 +28,11 @@ public class PostService {
 		return userRepository.findByTitle(text);
 		
 		
+	}
+	
+	public List<Post> fullSearch(String text,LocalDate minDate,LocalDate maxDate){
+		
+		return userRepository.fullSearch(text, minDate, maxDate);
 	}
 
 
